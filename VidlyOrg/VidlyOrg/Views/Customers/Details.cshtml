@@ -1,0 +1,32 @@
+﻿@model VidlyOrg.Models.Customer
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<ul>
+    <li>Name: @Model.Name</li>
+    <li>Membership Type: @Model.MembershipType.Name</li>
+    @if (Model.Birhdate.HasValue)
+    {
+        <li>Birthdate: @Model.Birhdate.Value.ToShortDateString()</li>
+    }
+    @if (Model.DrivingLicence == true)
+    {
+        <li>Driving licence: Yes</li>
+    }
+    else
+    {
+        <li>Driving licence:No</li>
+    }
+    @if (Model.DrivinLicenceReleaseDate.HasValue)
+    {
+        <li>Driving licence published: @Model.DrivinLicenceReleaseDate.Value.ToShortDateString()</li>
+    }
+</ul>
+<p>
+    @Html.ActionLink("Back","Index", null, new { @class = "btn btn-primary" })
+</p>
+

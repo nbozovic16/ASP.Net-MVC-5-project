@@ -1,0 +1,42 @@
+﻿@model IEnumerable<VidlyOrg.Models.Car>
+@{
+    ViewBag.Title = "Cars";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cars</h2>
+<p>
+    @Html.ActionLink("New Car", "New", "Cars", null, new { @class = "btn btn-primary"})
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Car body</th>
+            <th>Fuel</th>
+            <th>Price per day</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+        <tr>
+            
+            <td>@car.Brand</td>
+            <td>@car.Model</td>
+            <td>@car.CarBody.Name</td>
+            <td>@car.Fuel</td>
+            <td>@car.PricePerDay e</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = car.Id }, null)
+                @Html.ActionLink("Details", "Details", new { id = car.Id }, null)
+                @Html.ActionLink("Delete", "DeleteConfirmed", new { id = car.Id }, null)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

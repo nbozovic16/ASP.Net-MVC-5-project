@@ -1,0 +1,16 @@
+﻿@model VidlyOrg.Models.Car
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<ul>
+    <li>Brand: @Model.Brand</li>
+    <li>Model: @Model.Model</li>
+    <li>Car body: @Model.CarBody.Name</li>
+    <li>Fuel: @Model.Fuel</li>
+    <li>Price per day: @Model.PricePerDay</li>
+</ul>
+@Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })
+

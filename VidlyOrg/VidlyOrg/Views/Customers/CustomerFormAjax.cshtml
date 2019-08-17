@@ -1,0 +1,78 @@
+﻿@model VidlyOrg.ViewModel.CustomerFormViewModel
+@{
+    ViewBag.Title = "CustomerForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="btn-block">New Customer Ajax</h2>
+
+
+<label>Name</label>
+<input class="form-control" id="name" type="text" placeholder="Name" /><br />
+
+<label class="">Driving licence</label><br />
+<input class="checkbox-inline" type="checkbox" name="drivingLicence" value=""> Yes/No? <br/><br />
+
+<label>Driving licence published:</label>
+<input class="form-control" id="drivinLicenceReleaseDate" type="text" placeholder="driving licence realese date" /><br />
+
+<label>MembershipType</label>
+<select class="form-control" id="membershipTypeId" type="text">
+  <option value="2">Pay as u go</option>
+  <option value="3">Monthly</option>
+  <option value="4">Quaterly</option>
+  <option value="5">Anual</option>
+</select>
+
+<label>Birthdate</label>
+<input class="form-control" id="birhdate" type="text" placeholder="birhdate" /><br />
+
+
+
+<input class="btn btn-success" id="addCustomerBtn" type="button" value="Add Customer" />
+
+
+
+
+@section scripts
+{
+    
+    <script>
+        @* INSER NEW CUSTOMER *@
+        $('#addCustomerBtn').click(function () {
+            var name = $('#name').val();
+            var drivingLicence = $('#drivingLicence').val();
+            var drivinLicenceReleaseDate = $('#drivinLicenceReleaseDate').val();
+            var membershipTypeId = $('#membershipTypeId').val();
+            var birhdate = $('#birhdate').val();
+            {
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/customers/',
+                    dataType: 'json',
+                    data:
+                    {
+
+                        "name": name,
+                        "drivingLicence": drivingLicence,
+                        "drivinLicenceReleaseDate": drivinLicenceReleaseDate,
+                        "membershipTypeId": membershipTypeId,
+                        "birhdate": birhdate
+                    },
+                    success: function (response) {
+                        alert("Uspesno izvrseno");
+                        location.href = "http://localhost:50226/Customers";
+                    },
+
+                    error: function () {
+
+                        alert("Greška u akciji!");
+                    }
+                });
+            }
+
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/lib");
+}

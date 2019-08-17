@@ -1,0 +1,71 @@
+﻿@model IEnumerable<VidlyOrg.Models.Customer>
+@{
+	ViewBag.Title = "Customers";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+
+<table id="customers" class="table table-bordered table-hover">
+	<thead>
+		<tr>
+
+			<th>Customer</th>
+			<th>Driving licence</th>
+			<th>Driving licence release date</th>
+			<th>MembershipType</th>
+			<th>Birthdate</th>
+			<th>Option</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+
+
+
+@section scripts
+{
+	<script>
+
+	   @* Fetching data from db and put in Table*@
+	   $(document).ready(function () {
+		   $("#customers").DataTable({
+			   ajax: {
+				   url: "/api/customers",
+				   dataSrc: ""
+			   },
+			   columns: [
+				   {
+					   data: "name",
+					  
+				   },
+				   {
+					   data: 'drivingLicence'
+				   },
+				   {
+					   data: 'drivinLicenceReleaseDate'
+				   },
+				   {
+					   data: 'membershipType.name'
+				   },
+				   {
+					   data: 'birhdate'
+				   }
+				   
+			   ]
+		   });
+
+
+
+
+		
+
+
+
+
+
+
+	</script>
+}
+

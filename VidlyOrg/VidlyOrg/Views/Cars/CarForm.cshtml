@@ -1,0 +1,44 @@
+﻿@model VidlyOrg.ViewModel.CarFormViewModel
+@{
+    ViewBag.Title = "CarForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add new car</h2>
+
+@using (Html.BeginForm("Save", "Cars"))
+{
+    <div class="form-group">
+        @Html.LabelFor(c => c.Car.Brand)
+        @Html.TextAreaFor(c => c.Car.Brand, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Car.Model)
+        @Html.TextAreaFor(c => c.Car.Model, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Car.CarBodyId)
+        @Html.DropDownListFor(c => c.Car.CarBodyId, new SelectList(Model.CarBodies, "Id", "Name"), "Select Car body Type", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        
+        <label>Fuel</label>
+        <select class="form-control" id="@Html.TextAreaFor(c => c.Car.Fuel, new { @class = "form-control" })" type="text">
+            <option value="Dizel">Dizel</option>
+            <option value="Benzin">Benzin</option>
+            <option value="Metan">Metan</option>
+            <option value="Plin">Plin</option>
+        </select>
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(c => c.Car.PricePerDay)
+        @Html.TextBoxFor(c => c.Car.PricePerDay, new { @class = "form-control " })
+    </div>
+
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-danger" })
+    @Html.HiddenFor(c => c.Car.Id)
+    <button type="submit" class="btn btn-success">Save</button>
+
+}
+
